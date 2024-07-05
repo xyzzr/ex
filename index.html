@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Hackers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            transition: transform 0.1s, box-shadow 0.1s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s;
+        }
+
+        button {
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #8a2be2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="electron">
+            <div class="highlight"></div>
+            <h2>Electron</h2>
+            <p>Pros:</p>
+            <ul>
+                <li>??% UNC</li>
+                <li>??? Level</li>
+            </ul>
+            <p>Neutral:</p>
+            <ul>
+                <li>Decompiler sold separately</li>
+            </ul>
+            <p>Cons:</p>
+            <ul>
+                <li>They said very little</li>
+            </ul>
+            <button>11.99$</button>
+        </div>
+        <div class="card" id="celery">
+            <div class="highlight"></div>
+            <h2>Celery</h2>
+            <p>Pros:</p>
+            <ul>
+                <li>Built a decent reputation</li>
+                <li>In Beta phase</li>
+                <li>Level 8</li>
+            </ul>
+            <p>Neutral:</p>
+            <ul>
+                <li>Likely short-lived</li>
+            </ul>
+            <p>Cons:</p>
+            <ul>
+                <li>Many vulnerabilities</li>
+                <li>Safety is uncertain</li>
+            </ul>
+            <button>FREE</button>
+        </div>
+        <div class="card" id="solara">
+            <div class="highlight"></div>
+            <h2>Solara</h2>
+            <p>Pros:</p>
+            <ul>
+                <li>No key system</li>
+                <li>External</li>
+            </ul>
+            <p>Neutral:</p>
+            <ul>
+                <li>Most scripts may not work</li>
+                <li>Likely short-lived</li>
+                <li>Level 3 exploit</li>
+            </ul>
+            <p>Cons:</p>
+            <ul>
+                <li>Many vulnerabilities</li>
+                <li>Safety is uncertain</li>
+            </ul>
+            <button>FREE</button>
+        </div>
+        <!-- Add other cards similarly -->
+    </div>
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element
+                const y = e.clientY - rect.top;  // y position within the element
+
+                const xPercent = (x / rect.width) - 0.5;
+                const yPercent = (y / rect.height) - 0.5;
+
+                const rotateY = xPercent * 20; // Adjust the value for more/less tilt
+                const rotateX = -yPercent * 20; // Adjust the value for more/less tilt
+
+                card.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+
+                const highlight = card.querySelector('.highlight');
+                const highlightOpacity = 1 - (Math.abs(xPercent) + Math.abs(yPercent)) / 2;
+                highlight.style.opacity = highlightOpacity;
+                highlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, ${highlightOpacity}), transparent)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+                const highlight = card.querySelector('.highlight');
+                highlight.style.opacity = 0;
+            });
+        });
+    </script>
+</body>
+</html>
