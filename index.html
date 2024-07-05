@@ -3,160 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploit statuses</title>
+    <title>Exploit Statuses</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: white;
+    margin: 0;
+    filter: brightness(1.1); /* Increase brightness of the entire page */
+    padding-top: 70px; /* Space for the fixed top bar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    min-height: 100vh; /* Center the content vertically */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
-        .container {
-            display: flex;
-            gap: 20px;
-        }
+/* Top bar styling */
+.topbar {
+    background-color: #000000; /* Fully black background */
+    border-bottom: 0.01px solid gray; /* Border only at the bottom */
+    padding: 15px 30px; /* Extended padding for a longer top bar */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure the top bar is on top of other content */
+}
 
-        .card {
-            background-color: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            transition: transform 0.1s;
-            position: relative;
-            overflow: hidden;
-        }
+.topbar h1 {
+    margin: 0;
+    color: white;
+    font-size: 24px; /* Larger font size for the title */
+    font-weight: bold; /* Make the title bold */
+    position: relative; /* For the underline effect */
+    overflow: hidden; /* Ensure the underline effect is contained */
+}
 
-        .highlight {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0); /* Initial state */
-            pointer-events: none;
-            transition: background 0.1s;
-        }
+/* Underline effect */
+.topbar h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    height: 2px;
+    width: 100%;
+    background-color: blue;
+    transition: left 0.3s ease;
+}
 
-        button {
-            background-color: #6a0dad;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.topbar h1:hover::after {
+    left: 0;
+}
 
-        button:hover {
-            background-color: #8a2be2;
-        }
+.topbar h1:hover {
+    color: #dcdcdc; /* Optional: Change text color on hover */
+}
 
-        .pros li {
-            color: green;
-        }
+/* Container for the cards */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: center;
+    max-width: 1200px; /* Increased max-width for more space */
+    padding: 20px; /* Add some padding around the container */
+    perspective: 1000px; /* Apply perspective to the container */
+    margin-top: 20px; /* Moved the container closer to the top bar */
+}
 
-        .neutral li {
-            color: yellow;
-        }
+.card {
+    background-color: #000000; /* Fully black background */
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px; /* Fixed width for each card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 0.01px solid gray; /* Thinner border */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    justify-content: space-between; /* Space between content and button */
+    flex: 1 1 calc(33.333% - 20px); /* 33.333% width minus the gap */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
 
-        .cons li {
-            color: red;
-        }
+/* Highlight effect */
+.highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0); /* Initial state */
+    pointer-events: none;
+    transition: background 0.1s;
+}
+
+/* Enlarge effect on hover */
+.card:hover {
+    transform: scale(1.05) translateZ(20px); /* Scale up and push the card forward */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add shadow to enhance the pop effect */
+}
+
+button {
+    background: linear-gradient(135deg, #6a0dad, #4b0082, #1e90ff); /* Purple and blue gradient */
+    color: white;
+    border: none;
+    padding: 16px 30px; /* Increased padding for larger button */
+    border-radius: 20px; /* Larger border-radius */
+    cursor: pointer;
+    width: auto; /* Adjust width */
+    max-width: 180px; /* Optional: Max width to prevent button from being too large */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    margin: 20px auto 0; /* Center the button and add margin */
+    display: block; /* Ensure the button is displayed as a block-level element */
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #8a2be2, #6a0dad, #4682b4); /* Darker purple and blue gradient on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Style for headings */
+h2 {
+    margin: 0 0 15px; /* Increased space below heading */
+    color: #ffffff; /* White color for the heading */
+    font-size: 24px; /* Larger font size for headings */
+}
+
+.pros-heading, .neutral-heading, .cons-heading {
+    margin: 15px 0 10px; /* Increased space above and below the heading */
+    text-align: left; /* Align headings to the left */
+    width: 100%; /* Ensure headings take up full width */
+    font-size: 18px; /* Larger font size for subheadings */
+}
+
+.pros-heading {
+    color: #00ff00; /* Green color for "Pros" heading */
+}
+
+.neutral-heading {
+    color: #ffff00; /* Yellow color for "Neutral" heading */
+}
+
+.cons-heading {
+    color: #ff0000; /* Red color for "Cons" heading */
+}
+
+/* Style for list items with custom bullets */
+.pros li, .neutral li, .cons li {
+    color: white; /* White color for list items */
+    margin: 0; /* Remove default margins from list items */
+    padding: 0; /* Remove default padding from list items */
+    position: relative; /* Make sure list items are positioned relative for the custom bullet */
+    padding-left: 30px; /* Space for the bullet */
+    font-size: 16px; /* Larger font size for list items */
+}
+
+.pros li::before, .neutral li::before, .cons li::before {
+    content: '•'; /* Unicode for bullet point */
+    color: #ffffff; /* White color for bullets */
+    position: absolute;
+    left: 0;
+    font-size: 1.5em; /* Larger size of the bullet */
+    line-height: 1; /* Adjust to align with text */
+}
+
+.pros, .neutral, .cons {
+    margin: 0; /* Remove default margin from lists */
+    padding: 0; /* Remove default padding from lists */
+    list-style-type: none; /* Remove default bullet points */
+}
+
     </style>
 </head>
 <body>
+    <div class="topbar">
+        <h1>Roblox Exploits</h1>
+    </div>
+    
     <div class="container">
         <div class="card" id="electron">
             <div class="highlight"></div>
             <h2>Electron</h2>
-            <p>Pros:</p>
+            <p class="pros-heading">Pros:</p>
             <ul class="pros">
                 <li>??% UNC</li>
                 <li>??? Level</li>
             </ul>
-            <p>Neutral:</p>
+            <p class="neutral-heading">Neutral:</p>
             <ul class="neutral">
                 <li>Decompiler sold separately</li>
             </ul>
-            <p>Cons:</p>
+            <p class="cons-heading">Cons:</p>
             <ul class="cons">
                 <li>They said very little</li>
             </ul>
             <button>11.99$</button>
         </div>
+        
         <div class="card" id="celery">
             <div class="highlight"></div>
             <h2>Celery</h2>
-            <p>Pros:</p>
+            <p class="pros-heading">Pros:</p>
             <ul class="pros">
                 <li>Built a decent reputation</li>
                 <li>In Beta phase</li>
                 <li>Level 8</li>
             </ul>
-            <p>Neutral:</p>
+            <p class="neutral-heading">Neutral:</p>
             <ul class="neutral">
                 <li>Likely short-lived</li>
             </ul>
-            <p>Cons:</p>
+            <p class="cons-heading">Cons:</p>
             <ul class="cons">
                 <li>Many vulnerabilities</li>
                 <li>Safety is uncertain</li>
             </ul>
             <button>FREE</button>
         </div>
+        
         <div class="card" id="solara">
             <div class="highlight"></div>
             <h2>Solara</h2>
-            <p>Pros:</p>
+            <p class="pros-heading">Pros:</p>
             <ul class="pros">
                 <li>No key system</li>
                 <li>External</li>
             </ul>
-            <p>Neutral:</p>
+            <p class="neutral-heading">Neutral:</p>
             <ul class="neutral">
                 <li>Most scripts may not work</li>
                 <li>Likely short-lived</li>
                 <li>Level 3 exploit</li>
             </ul>
-            <p>Cons:</p>
+            <p class="cons-heading">Cons:</p>
             <ul class="cons">
                 <li>Many vulnerabilities</li>
                 <li>Safety is uncertain</li>
             </ul>
             <button>FREE</button>
         </div>
-     
+
+
+        <div class="card" id="Wave">
+            <div class="highlight"></div>
+            <h2>Wave</h2>
+            <p class="pros-heading">Pros:</p>
+            <ul class="pros">
+                <li>Offers a premium package</li>
+                <li>Proven safe in all builds</li>
+                <li>98-100% UNC</li>
+                <li>Level 7-8</li>
+            </ul>
+            <p class="neutral-heading">Neutral:</p>
+            <ul class="neutral">
+                <li>Includes a keysystem</li>
+                <li>Wave Lite has less features</li>
+                <li>Rarely updated</li>
+            </ul>
+            <button>FREE | PAID</button>
+        </div>
+
+        <div class="card" id="DX9WARE">
+            <div class="highlight"></div>
+            <h2>DX9WARE</h2>
+            <p class="pros-heading">Pros:</p>
+            <ul class="pros">
+                <li>Zero traces of detection found</li>
+                <li>Custom Lua environment</li>
+                <li>Has a big script library</li>
+                <li>Ton of features</li>
+                <li>External</li>
+            </ul>
+            <p class="neutral-heading">Neutral:</p>
+            <ul class="neutral">
+                <li>Lifetime subscription removed soon</li>
+                <li>Early Beta - expect bugs</li>
+            </ul>
+            <button>3.25$</button>
+        </div>
+
+
+        <div class="card" id="Hydrogen">
+            <div class="highlight"></div>
+            <h2>Hydrogen</h2>
+            <p class="pros-heading">Pros:</p>
+            <ul class="pros">
+                <li>No keysystem for MacOS</li>
+                <li>No negative reputation</li>
+                <li>MacOS 96% UNC</li>
+            </ul>
+            <p class="neutral-heading">Neutral:</p>
+            <ul class="neutral">
+                <li>Keysystem included for Android</li>
+                <li>Rarely updated</li>
+            </ul>
+            <button>FREE</button>
+        </div>
+        
+        
     </div>
     <script>
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const xPercent = x / rect.width;
-                const yPercent = y / rect.height;
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xPercent = x / rect.width;
+        const yPercent = y / rect.height;
 
-                // Adjust the highlight gradient based on mouse position
-                const highlight = card.querySelector('.highlight');
-                highlight.style.background = `
-                    radial-gradient(circle at ${xPercent * 100}% ${yPercent * 100}%, rgba(200, 200, 200, 0.4), rgba(200, 200, 200, 0) 40%)
-                `;
+        // Adjust the highlight gradient based on mouse position
+        const highlight = card.querySelector('.highlight');
+        highlight.style.background = `
+            radial-gradient(circle at ${xPercent * 100}% ${yPercent * 100}%, rgba(200, 200, 200, 0.4), rgba(200, 200, 200, 0) 40%)
+        `;
+    });
 
-                // Optionally add a 3D rotation effect
-                card.style.transform = `perspective(1000px) rotateY(${(x / rect.width - 0.5) * 20}deg) rotateX(${-(y / rect.height - 0.5) * 20}deg)`;
-            });
+    card.addEventListener('mouseleave', () => {
 
-            card.addEventListener('mouseleave', () => {
-                // Reset the transform and background when the mouse leaves the card
-                card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
-                const highlight = card.querySelector('.highlight');
-                highlight.style.background = 'rgba(255, 255, 255, 0)';
-            });
-        });
+        const highlight = card.querySelector('.highlight');
+        highlight.style.background = 'rgba(255, 255, 255, 0)';
+    });
+});
     </script>
 </body>
 </html>
