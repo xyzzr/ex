@@ -10,20 +10,20 @@ body {
     background-color: #000000;
     color: white;
     margin: 0;
-    filter: brightness(1.1); /* Increase brightness of the entire page */
-    padding-top: 70px; /* Space for the fixed top bar */
+    filter: brightness(1.1);
+    padding-top: 70px;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items to the top */
-    min-height: 100vh; /* Center the content vertically */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    align-items: flex-start;
+    min-height: 100vh; 
+    overflow-x: hidden; 
 }
 
-/* Top bar styling */
+
 .topbar {
-    background-color: #000000; /* Fully black background */
-    border-bottom: 0.01px solid gray; /* Border only at the bottom */
-    padding: 15px 30px; /* Extended padding for a longer top bar */
+    background-color: #000000; 
+    border-bottom: 0.01px solid gray; 
+    padding: 15px 30px;
     display: flex;
     align-items: center;
     position: fixed;
@@ -31,19 +31,19 @@ body {
     top: 0;
     left: 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    z-index: 1000; /* Ensure the top bar is on top of other content */
+    z-index: 1000;
 }
 
 .topbar h1 {
     margin: 0;
     color: white;
-    font-size: 24px; /* Larger font size for the title */
-    font-weight: bold; /* Make the title bold */
-    position: relative; /* For the underline effect */
-    overflow: hidden; /* Ensure the underline effect is contained */
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden; 
 }
 
-/* Underline effect */
+
 .topbar h1::after {
     content: '';
     position: absolute;
@@ -60,132 +60,130 @@ body {
 }
 
 .topbar h1:hover {
-    color: #dcdcdc; /* Optional: Change text color on hover */
+    color: #dcdcdc; 
 }
 
-/* Container for the cards */
+
 .container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Space between cards */
+    gap: 20px; 
     justify-content: center;
-    max-width: 1200px; /* Increased max-width for more space */
-    padding: 20px; /* Add some padding around the container */
-    perspective: 1000px; /* Apply perspective to the container */
-    margin-top: 20px; /* Moved the container closer to the top bar */
+    max-width: 1200px;
+    padding: 20px; 
+    perspective: 1000px;
+    margin-top: 20px; 
 }
 
 .card {
-    background-color: #000000; /* Fully black background */
+    background-color: #000000; 
     padding: 20px;
     border-radius: 10px;
-    width: 600px; /* Fixed width for each card */
+    width: 600px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: 0.01px solid gray; /* Thinner border */
+    border: 0.01px solid gray;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start */
-    justify-content: space-between; /* Space between content and button */
-    flex: 1 1 calc(33.333% - 20px); /* 33.333% width minus the gap */
-    box-sizing: border-box; /* Include padding and border in the width calculation */
+    align-items: flex-start; 
+    justify-content: space-between;
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box; 
 }
 
-/* Highlight effect */
+
 .highlight {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0); /* Initial state */
+    background: rgba(255, 255, 255, 0);
     pointer-events: none;
     transition: background 0.1s;
 }
 
-/* Enlarge effect on hover */
+
 .card:hover {
-    transform: scale(1.05) translateZ(20px); /* Scale up and push the card forward */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add shadow to enhance the pop effect */
+    transform: scale(1.05) translateZ(20px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
 }
 
 button {
-    background: linear-gradient(135deg, #6a0dad, #4b0082, #1e90ff); /* Purple and blue gradient */
+    background: linear-gradient(135deg, #6a0dad, #4b0082, #1e90ff);
     color: white;
     border: none;
-    padding: 16px 30px; /* Increased padding for larger button */
-    border-radius: 20px; /* Larger border-radius */
+    padding: 16px 30px;
+    border-radius: 20px;
     cursor: pointer;
-    width: auto; /* Adjust width */
-    max-width: 180px; /* Optional: Max width to prevent button from being too large */
-    box-sizing: border-box; /* Include padding in the width calculation */
-    margin: 20px auto 0; /* Center the button and add margin */
-    display: block; /* Ensure the button is displayed as a block-level element */
+    width: auto;
+    max-width: 180px;
+    box-sizing: border-box;
+    margin: 20px auto 0;
+    display: block;
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #8a2be2, #6a0dad, #4682b4); /* Darker purple and blue gradient on hover */
-    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    background: linear-gradient(135deg, #8a2be2, #6a0dad, #4682b4);
+    transform: scale(1.05);
 }
 
-/* Style for headings */
 h2 {
-    margin: 0 0 15px; /* Increased space below heading */
-    color: #ffffff; /* White color for the heading */
-    font-size: 24px; /* Larger font size for headings */
+    margin: 0 0 15px;
+    color: #ffffff;
+    font-size: 24px;
 }
 
 .pros-heading, .neutral-heading, .cons-heading {
-    margin: 15px 0 10px; /* Increased space above and below the heading */
-    text-align: left; /* Align headings to the left */
-    width: 100%; /* Ensure headings take up full width */
-    font-size: 18px; /* Larger font size for subheadings */
+    margin: 15px 0 10px;
+    text-align: left;
+    width: 100%;
+    font-size: 18px;
 }
 
 .pros-heading {
-    color: #00ff00; /* Green color for "Pros" heading */
+    color: #00ff00;
 }
 
 .neutral-heading {
-    color: #ffff00; /* Yellow color for "Neutral" heading */
+    color: #ffff00;
 }
 
 .cons-heading {
-    color: #ff0000; /* Red color for "Cons" heading */
+    color: #ff0000;
 }
 
-/* Style for list items with custom bullets */
 .pros li, .neutral li, .cons li {
-    color: white; /* White color for list items */
-    margin: 0; /* Remove default margins from list items */
-    padding: 0; /* Remove default padding from list items */
-    position: relative; /* Make sure list items are positioned relative for the custom bullet */
-    padding-left: 30px; /* Space for the bullet */
-    font-size: 16px; /* Larger font size for list items */
+    color: white;
+    margin: 0; 
+    padding: 0;
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
 }
 
 .pros li::before, .neutral li::before, .cons li::before {
-    content: '•'; /* Unicode for bullet point */
-    color: #ffffff; /* White color for bullets */
+    content: '•';
+    color: #ffffff;
     position: absolute;
     left: 0;
-    font-size: 1.5em; /* Larger size of the bullet */
-    line-height: 1; /* Adjust to align with text */
+    font-size: 1.5em;
+    line-height: 1;
 }
 
 .pros, .neutral, .cons {
-    margin: 0; /* Remove default margin from lists */
-    padding: 0; /* Remove default padding from lists */
-    list-style-type: none; /* Remove default bullet points */
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
     </style>
 </head>
 <body>
     <div class="topbar">
-        <h1>Roblox Exploits</h1>
+        <h1>Roblox Exploits | OLD VERSION, NEW VERSION: https://rbxlhacks.github.io/</h1>
     </div>
     
     <div class="container">
